@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录</title>
+  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/particles/css/style.css">
+  <script src="../lib/jQuery/jquery.min.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+  <script language="JavaScript" type="text/javascript">
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+  <style>
+    .container{
+      position: relative;
+      width: 350px;
+      font-size: 12px;
+      line-height: 50px;
+      border: 1px solid #dbdbdb;
+      border-radius: 10px;
+      top: 50px;
+      background-color: #dbdbdb;
+    }
+    body{
+      background-color: black;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    label{
+      font-size: 15px;
+    }
+    .navbar-nav {
+      float: none;
+      text-align:center;
+    }
+    ul.nav.navbar-nav  li {
+      float:none;
+      display: inline-block;
+      margin: 0;
+    }
+    button{
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+<div id="particles-js"></div>
+<div class="container">
+  <form action="addstudents.html" class="needs-validation" novalidate>
+    <div class="form-group text-center">
+      <img src="../images/logo.png" alt="寰宇">
+      <h2 style="font-size: 20px;">寰宇学生信息管理平台</h2>
+    </div>
+    <div class="form-group">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav ">
+            <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+            <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="form-group">
+      <label for="username">用户名</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="请输入您的用户名" required>
+      <div class="invalid-feedback">请输入正确的用户名</div>
+    </div>
+    <div class="form-group">
+      <label for="password">密码</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="请输入您的密码" pattern="[A-Za-z0-9]{6,15}" required>
+      <div class="invalid-feedback">请输入正确的密码（6-15位的数字或大小写字母）</div>
+    </div>
+    <div class="form-group"  align="center">
+      <button type="submit" class="btn btn-primary" id="btnSubmit">登录</button>
+    </div>
+  </form>
+</div>
+<script src="../lib/particles/particles.min.js"></script>
+<script src="../lib/particles/js/app.js"></script>
+</body>
+</html>

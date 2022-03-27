@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>信息浏览页</title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../lib/particles/css/style.css">
+    <script src="../lib/jQuery/jquery.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        window.onload=function (){
+            var oDt=new Date();
+            var sWd="";
+            var iWeekDay=oDt.getDay();
+            switch(iWeekDay){
+                case 0:
+                    sWd="星期日";break;
+                case 1:
+                    sWd="星期一";break;
+                case 2:
+                    sWd="星期二";break;
+                case 3:
+                    sWd="星期三";break;
+                case 4:
+                    sWd="星期四";break;
+                case 5:
+                    sWd="星期五";break;
+                case 6:
+                    sWd="星期六";break;
+            }
+            var iMonth=parseInt(oDt.getMonth())+1;
+            document.getElementById("displaydate").innerHTML="<span>"+oDt.getFullYear()+"年"+iMonth+"月"+oDt.getDate()+"日"+sWd+"</span>";
+            var iTimerid=window.setInterval("showtime()",1000);
+        }
+        function showtime(){
+            var oDt=new Date();
+            var iTimerid;
+            var sTime="";
+            if(oDt.getHours()<10){
+                sTime+="0"+oDt.getHours()+":";}
+            else{
+                sTime+=oDt.getHours()+":";}
+            if(oDt.getMinutes()<10){
+                sTime+="0"+oDt.getMinutes()+":";}
+            else{
+                sTime+=oDt.getMinutes()+":";}
+            if(oDt.getSeconds()<10){
+                sTime+="0"+oDt.getSeconds();}
+            else{
+                sTime+=oDt.getSeconds();}
+            document.getElementById("displaytime").innerHTML="<span>"+sTime+"</span>";
+        }
+    </script>
+    <style>
+        .container{
+            position: relative;
+            width: 1000px;
+            font-size: 12px;
+            line-height: 50px;
+            top: 50px;
+        }
+        body{
+            background-color: black;
+        }
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        #displaydate{
+            position: absolute;
+            right: 300px;
+            top: 20px;
+            font-size: 15px;
+        }
+        #displaytime{
+            position: absolute;
+            right: 200px;
+            top: 20px;
+            font-size: 15px;
+        }
+        #welcome{
+            position: absolute;
+            right: 500px;
+            top: 20px;
+            font-size: 15px;
+        }
+        #exit{
+            position: absolute;
+            right: 100px;
+            top: 35px;
+            font-size: 15px;
+        }
+        #line1{
+            border-right: 1px solid darkgrey;
+            height: 550px;
+        }
+        #table1{
+            position: absolute;
+            top: 10px;
+            width: 750px;
+        }
+
+        .mailTable{
+            width: 100%;
+            border-top: 1px solid #E6EAEE;
+            border-left: 1px solid #E6EAEE;
+        }
+        .mailTable tr td{
+            width: 200px;
+            height: 35px;
+            line-height: 35px;
+            box-sizing: border-box;
+            padding: 0 10px;
+            border-bottom: 1px solid #E6EAEE;
+            border-right: 1px solid #E6EAEE;
+        }
+        .mailTable tr td.column {
+            background-color: #EFF3F6;
+            color: #393C3E;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+<div id="particles-js"></div>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row" id="row1">
+                <div class="col-md-2">
+                    <img src="../images/logo.png" alt="寰宇">
+                </div>
+                <div class="col-md-10">
+                    <span id="welcome">欢迎进入寰宇学生信息管理系统</span>
+                    <span id="displaydate"></span>
+                    <span id="displaytime"></span>
+                    <a href="login.html" style="color: white"><span id="exit" class="glyphicon glyphicon-log-out"> 退出</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row" id="row2">
+                <div class="col-md-2" id="line1">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="addstudents.html">学生信息输入</a></li>
+                        <li class="active"><a href="information_show.html">学生信息浏览</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-10">
+                    <table class="table table-hover" id="table1">
+                        <thread>
+                            <tr>
+                                <th><b>序号</b></th>
+                                <th><b>姓名</b></th>
+                                <th><b>学号</b></th>
+                                <th><b>班级</b></th>
+                                <th><b>详细信息</b></th>
+                            </tr>
+                        </thread>
+                        <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>赵一</td>
+                            <td>201901011901</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal1">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>孙二</td>
+                            <td>201901011902</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>张三</td>
+                            <td>201901011903</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal3">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>李四</td>
+                            <td>201901011904</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal4">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>王五</td>
+                            <td>201901011905</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal5">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>陆六</td>
+                            <td>201901011906</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>钱七</td>
+                            <td>201901011907</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>周八</td>
+                            <td>201901011908</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal8">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>9</th>
+                            <td>吴九</td>
+                            <td>201901011909</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal9">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>10</th>
+                            <td>郑十</td>
+                            <td>201901011910</td>
+                            <td>软件工程1904</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal10">查看</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>赵一</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011901</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>11111@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>18888888888</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>浙江嘉兴</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>国家奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢敲代码</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>大数据</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>孙二</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011902</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>222222@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>18657987654</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>浙江杭州</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>省政府奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢打篮球</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>计算机视觉</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>张三</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011903</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>33333@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>17856789876</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>浙江温州</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>国家奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢打游戏</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>人工智能</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>李四</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>44444@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>13857987654</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>上海</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>校一等奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢踢足球</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>计算机图形学</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>王五</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011905</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>55555@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>17834566543</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>北京</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>国家奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢打网球</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>网络信息安全</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>陆六</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011906</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>66666@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>13898563468</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>深圳</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>校二等奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢看书</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>大数据</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>钱七</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011907</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>77777@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>16666666666</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>天津</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>国家奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢游泳</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>大数据</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>周八</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011908</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>88888@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>18878563478</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>浙江宁波</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>学习三等奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢看电影</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>计算机图形学</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>吴九</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011909</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>99999@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>19867548796</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>浙江金华</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>国家奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢旅游</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>大数据</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">详细信息</h4>
+            </div>
+            <div class="modal-body">
+                <table class="mailTable"  cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="column">姓名</td>
+                        <td>郑十</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学号</td>
+                        <td>201901011910</td>
+                    </tr>
+                    <tr>
+                        <td class="column">专业</td>
+                        <td>软件工程</td>
+                    </tr>
+                    <tr>
+                        <td class="column">班级</td>
+                        <td>软件工程1904</td>
+                    </tr>
+                    <tr>
+                        <td class="column">性别</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="column">学生类型</td>
+                        <td>本科生</td>
+                    </tr>
+                    <tr>
+                        <td class="column">电子邮箱</td>
+                        <td>100000@qq.com</td>
+                    </tr>
+                    <tr>
+                        <td class="column">联系电话</td>
+                        <td>17654385687</td>
+                    </tr>
+                    <tr>
+                        <td class="column">户籍地址</td>
+                        <td>浙江绍兴</td>
+                    </tr>
+                    <tr>
+                        <td class="column">现居住地</td>
+                        <td>浙江工业大学</td>
+                    </tr>
+                    <tr>
+                        <td class="column">奖惩情况</td>
+                        <td>学习二等奖学金</td>
+                    </tr>
+                    <tr>
+                        <td class="column">个人简介</td>
+                        <td>喜欢看新闻</td>
+                    </tr>
+                    <tr>
+                        <td class="column">兴趣方向</td>
+                        <td>人工智能</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script src="../lib/particles/particles.min.js"></script>
+<script src="../lib/particles/js/app.js"></script>
+</body>
+</html>
